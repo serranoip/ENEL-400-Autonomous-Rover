@@ -175,18 +175,43 @@ void loop() {
     analogWrite(speedPinR, 150);
     analogWrite(speedPinL, 150);
   }
+  
   //turning right and then moving straight
   else if ( distance2L < 20 && distance2L > 20) {
     for ( distance2L < 20)  {
-      
+      digitalWrite(dir1R, HIGH);  
+      digitalWrite(dir2R, LOW);
+      digitalWrite(dir1L, HIGH);
+      digitalWrite(dir2L, LOW);
+      analogWrite(speedPinR, 50);
+      analogWrite(speedPinL, 255);
     }
     for ( distance2L > 20)  {
-      
+      //how to make it going straight again as the intial path when it is turned side way?????
     }
   }
-        //how to make it going straight again as the intial path when it is turned side way?????
-
-        
+       
   //turning right and then moving straight
+  else if ( distance2L > 20 && distance2L < 20) {
+    if ( distance2L < 20)  {
+      digitalWrite(dir1R, HIGH);  
+      digitalWrite(dir2R, LOW);
+      digitalWrite(dir1L, HIGH);
+      digitalWrite(dir2L, LOW);
+      analogWrite(speedPinR, 255);
+      analogWrite(speedPinL, 50);
+    }
+    if ( distance2L > 20)  {
+      //how to make it going straight again as the intial path when it is turned side way?????
+    }
+  }
 
+  //stop
+  else if ( distance2L <= 20 && distance2L <= 20) {
+      digitalWrite(dir1R, LOW);  
+      digitalWrite(dir2R, LOW);
+      digitalWrite(dir1L, LOW);
+      digitalWrite(dir2L, LOW);
+  }
   //moving backward
+
