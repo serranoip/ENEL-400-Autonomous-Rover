@@ -6,17 +6,17 @@ const int IN2 = 21;
 const int IN3 = 2;
 const int IN4 = 13;
 const int ENB = 14;
-void msetup(){
+void motorSetup(){
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
 }
-void brake(){
+void mbrake(){
   analogWrite(ENA, 0);
   analogWrite(ENB, 0);
 }
-void start(){
+void mstart(){
   analogWrite(ENA, 220);
   analogWrite(ENB, 220);
 }
@@ -62,12 +62,12 @@ void dMove(bool forward = true, int time_ms = 150, float direction = 0, byte spe
   analogWrite(outsideMotor, speed);
   analogWrite(insideMotor, int(speed*(1-abs(direction))));
   delay(time_ms);
-  brake();
+  mbrake();
 }
 void dTurn(bool right, int time_ms= 100, byte speed = 220){
   right? mright():mleft();
   analogWrite(ENA, speed);
   analogWrite(ENB, speed);
   delay(time_ms);
-  brake();
+  mbrake();
 }

@@ -36,7 +36,7 @@ void setup() {
   Serial.println(myIP);
   server.begin();
   Serial.println("Server started");
-  msetup();
+  motorSetup();
 }
 
 void loop() {
