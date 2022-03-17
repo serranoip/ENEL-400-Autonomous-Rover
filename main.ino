@@ -1,3 +1,5 @@
+
+
 /*
   WiFiAccessPoint.ino Create a wifi hotspot, and provide a web service
 
@@ -11,16 +13,18 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiAP.h>
-
-
+#include "motor.h"
 // Set your wifi and password
 const char *ssid = "esp32";
 const char *password = "";
 
+
 WiFiServer server(80);
 
 void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);//Set pin LED to output mode 
+
+  
+  pinMode(LED_BUILTIN, OUTPUT);//Set pin LED to output mode
   Serial.begin(115200);
   Serial.println();
   Serial.println("Configuring access point...");
@@ -31,8 +35,8 @@ void setup() {
   Serial.print("AP IP address: ");
   Serial.println(myIP);
   server.begin();
-
   Serial.println("Server started");
+  msetup();
 }
 
 void loop() {
@@ -57,8 +61,10 @@ void loop() {
             client.println();
 
             // the content of the HTTP response follows the header:
-            client.print("Click <a href=\"/H\">here</a> to turn ON the LED.<br>");
-            client.print("Click <a href=\"/L\">here</a> to turn OFF the LED.<br>");
+            client.print("Click <a href=\"/F\">here</a> to move Forward.<br>");
+            client.print("Click <a href=\"/B\">here</a> to move Backward.<br>");
+            client.print("Click <a href=\"/R\">here</a> to turn Left.<br>");
+            client.print("Click <a href=\"/L\">here</a> to turn Right.<br>");
 
             // The HTTP response ends with another blank line:
             client.println();
@@ -72,11 +78,17 @@ void loop() {
         }
 
         // Check to see if the client request was "GET /H" or "GET /L":
-        if (currentLine.endsWith("GET /H")) {
-          digitalWrite(LED_BUILTIN, HIGH);               // GET /H turns the LED on
+        if (currentLine.endsWith("GET /F")) {
+          dMove();             // GET /H turns the LED on
+        }
+        if (currentLine.endsWith("GET /B")) {
+          dMove(false);                // GET /L turns the LED off
+        }
+        if (currentLine.endsWith("GET /R")) {
+          dTurn(true);                // GET /L turns the LED off
         }
         if (currentLine.endsWith("GET /L")) {
-          digitalWrite(LED_BUILTIN, LOW);                // GET /L turns the LED off
+          dTurn(false);                // GET /L turns the LED off
         }
       }
     }
