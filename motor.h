@@ -47,23 +47,27 @@ void mleft(){
 
 
 /*------------------------------------------------------------------------------------------*/
-
-
-void dMove(bool forward = true, int time_ms = 150, float direction = 0, byte speed = 220){
+byte move(byte speed = 220, bool forward = true, float direction = 0){
   if (abs(direction) > 1) {
     //direction must be between -1 & 1
-    return;
+    return 1;
   }
 
   int outsideMotor = direction > 0 ? ENB : ENA;
   int insideMotor = (ENA + ENB) - outsideMotor;
-  
+
   forward? mforward():mbackward();
   analogWrite(outsideMotor, speed);
   analogWrite(insideMotor, int(speed*(1-abs(direction))));
+  return 0;
+}
+
+void dMove(byte speed = 220, bool forward = true, int time_ms = 150, float direction = 0){
+  if(move(forward, direction, speed)) return;
   delay(time_ms);
   mbrake();
 }
+
 void dTurn(bool right, int time_ms= 100, byte speed = 220){
   right? mright():mleft();
   analogWrite(ENA, speed);
