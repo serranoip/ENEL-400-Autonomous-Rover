@@ -1,2 +1,0 @@
-//initialize sensor
-//calculate distance
