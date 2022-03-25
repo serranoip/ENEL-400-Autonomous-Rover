@@ -1,15 +1,15 @@
-//initialize sensor
-//calculate distance
+////initialize sensor
+////calculate distance
+
 
 class sensor
 {
   public:
-   float sensorRight()
-   {
-      int accDistR = 0;
-      float averageDistR;
+    float distR()
+    {
+      float accDistR = 0;
+      float DistanceR;
       float pingTravelTimeR;
-      float distanceR;
       
       for(int i=0; i < trials; i++)  {  //return the average value of 20 trials instead of one at a time -- more stable data
         digitalWrite(trigPinR, LOW);
@@ -21,19 +21,18 @@ class sensor
         delay(25);
         accDistR = accDistR + pingTravelTimeR;  //total value of the accDist in (trails) times
       }
-      averageDistR = accDistR / trials;
-      //the value of the distance value on the RIGHT sensor
-      distanceR = (0.0343 * averageDistR) / 2; //in cm
-      return (float) distanceR;
+
+      DistanceR = (0.0343/2) * (accDistR / trials);
+      return (float)DistanceR;
     }
 
-    float sensorLeft()
+    float distL()
     {
       float accDistL = 0;
+      float DistanceL;
       float pingTravelTimeL;
-      float distanceL;
-      float averageDistL;
-      for(int j=0; j < trials; j++)  {  //return the average value of 20 trials instead of one at a time -- more stable data
+      
+      for(int i=0; i < trials; i++)  {  //return the average value of 20 trials instead of one at a time -- more stable data
         digitalWrite(trigPinL, LOW);
         delayMicroseconds(10);
         digitalWrite(trigPinL, HIGH);
@@ -41,14 +40,12 @@ class sensor
         digitalWrite(trigPinL, LOW);
         pingTravelTimeL = pulseIn(echoPinL, HIGH); 
         delay(25);
-        accDistL = accDistL + pingTravelTimeL;
+        accDistL = accDistL + pingTravelTimeL;  //total value of the accDist in (trails) times
       }
-      averageDistL = accDistL / trials;
-      //the value of the distance value on the LEFT sensor
-      distanceL = (0.0343 * averageDistL) / 2; //in cm
-      return (float) distanceL;
-    }
-  
-  private:
 
+      DistanceL = (0.0343/2) * (accDistL / trials);
+      return (float)DistanceL;
+    }
+    
+  private:
 };

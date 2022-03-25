@@ -77,10 +77,7 @@ class motor
         delay(1);
         digitalWrite(dir1R, HIGH);
       }
-
-  
-
-  
+ 
   
   private:
     

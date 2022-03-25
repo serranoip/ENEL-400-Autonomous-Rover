@@ -18,4 +18,10 @@ void setup()  {
   pinMode(speedPinL, OUTPUT);
   pinMode(dir1L, INPUT);
   pinMode(dir2L, INPUT);
+
+  // Gyro
+
+  // Start the rover
+  motor motion;
+  motion.powerUp();
 }
