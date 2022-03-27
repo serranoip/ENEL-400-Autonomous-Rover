@@ -31,6 +31,7 @@ int mspeedL;
 //constant timeDelay and trial times
 const int timeDelay = 500;
 const int trials = 20;
+const int fullSpeed = 150;
 
 //define the Gyro code    //accredited from 
 #define DEGREE_METHOD_USING_MICROS

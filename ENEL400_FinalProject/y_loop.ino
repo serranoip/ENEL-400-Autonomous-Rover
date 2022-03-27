@@ -4,11 +4,16 @@ void loop() {
 //  float dL;
 //  dL = sonicSensor.distL();
 
-  gyro gyroMotor;
+//  gyro gyroMotor;
+//
+//  float angleValue;
+//  angleValue = gyroMotor.angleInput();
+//  Serial.println(angleValue);
+//  
 
-  float angleValue;
-  angleValue = gyroMotor.angleInput();
-  Serial.println(angleValue);
+  roverAction();
+  delay(100);
+  
   
   
 }
