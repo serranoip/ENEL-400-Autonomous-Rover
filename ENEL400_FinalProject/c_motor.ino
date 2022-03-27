@@ -34,8 +34,8 @@ class motor
       digitalWrite(dir2R, LOW);
       digitalWrite(dir1L, HIGH);
       digitalWrite(dir2L, LOW);
-      analogWrite(speedPinR, velocity);
-      analogWrite(speedPinL, velocity);
+//      analogWrite(speedPinR, velocity);
+//      analogWrite(speedPinL, velocity);
     }
 
     void backwardSpeed(int velocity)  //go backward
@@ -44,8 +44,8 @@ class motor
       digitalWrite(dir2R, HIGH);
       digitalWrite(dir1L, LOW);
       digitalWrite(dir2L, HIGH);
-      analogWrite(speedPinR, velocity);
-      analogWrite(speedPinL, velocity);
+//      analogWrite(speedPinR, velocity);
+//      analogWrite(speedPinL, velocity);
     }
 
     void right(int turnSpeed) //Turns car to the right  //depending on the setup turning speed
@@ -54,8 +54,8 @@ class motor
       digitalWrite(dir2R, LOW);
       digitalWrite(dir1L, LOW);
       digitalWrite(dir2L, HIGH);
-      analogWrite(speedPinR, turnSpeed);
-      analogWrite(speedPinL, turnSpeed);  //does this make the rover turn smoother?
+//      analogWrite(speedPinR, turnSpeed);
+//      analogWrite(speedPinL, turnSpeed);  //does this make the rover turn smoother?
     }
 
     void left(int turnSpeed) //Turns car to the left
@@ -64,25 +64,25 @@ class motor
       digitalWrite(dir2R, HIGH);
       digitalWrite(dir1L, HIGH);
       digitalWrite(dir2L, LOW);
-      analogWrite(speedPinR, turnSpeed);
-      analogWrite(speedPinL, turnSpeed);
+//      analogWrite(speedPinR, turnSpeed);
+//      analogWrite(speedPinL, turnSpeed);
     }
 
-//    void adjustRight(int rightSpeed) // turn the car slightly to the right
-//    {
-//      digitalWrite(dir1L, LOW);
-//      delay(1);
-//      digitalWrite(dir1L, HIGH);
-//    }
-//
-//    void adjustLeft( int leftSpeed) // turn the car slightly to the right
-//    {
-//      digitalWrite(dir1R, LOW);
-//      delay(1);
-//      digitalWrite(dir1R, HIGH);
-//    }
+    //    void adjustRight(int rightSpeed) // turn the car slightly to the right
+    //    {
+    //      digitalWrite(dir1L, LOW);
+    //      delay(1);
+    //      digitalWrite(dir1L, HIGH);
+    //    }
+    //
+    //    void adjustLeft( int leftSpeed) // turn the car slightly to the right
+    //    {
+    //      digitalWrite(dir1R, LOW);
+    //      delay(1);
+    //      digitalWrite(dir1R, HIGH);
+    //    }
 
-    
+
 
 
   private:

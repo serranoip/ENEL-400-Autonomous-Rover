@@ -1,3 +1,9 @@
+/*Viet Trung Dau
+ * March 21, 2022
+ * Code refered from https://www.youtube.com/watch?v=ZBfOH7ryFFc  //gyro navigation
+ *                   https://www.youtube.com/watch?v=D7WmrVNSCqE&feature=youtu.be   //extracting gyro sensor value
+*/
+
 //declare library
 //declare pin locations
 //declare parameter

@@ -6,8 +6,6 @@ class gyroAction
     gyro gyroMotor;
     motor Movement;
 
-
-
     void turn(int desiredAngle) { //90 for turning left //-90 for turning right //from the calibration point //not depending on the rover direction at that moment
       float angleValue = gyroMotor.angleInput();
 
@@ -24,7 +22,7 @@ class gyroAction
       Movement.fullStop();
     }
 
-    void straightAhead(int duration)  {
+    void straightAhead(int duration)  {   //keep the rover running on a straight line despite turbulence 
       float angleValue = gyroMotor.angleInput();
       unsigned long desitination = millis() + duration;
 
