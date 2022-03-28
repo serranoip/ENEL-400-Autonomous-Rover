@@ -1,9 +1,15 @@
+/*Viet Trung Dau
+ * March 21, 2022
+ * Code refered from https://www.youtube.com/watch?v=ZBfOH7ryFFc  //gyro navigation
+ *                   https://www.youtube.com/watch?v=D7WmrVNSCqE&feature=youtu.be   //extracting gyro sensor value
+*/
+
 //declare library
 //declare pin locations
 //declare parameter
 
 #include <Wire.h>                            // Wire library require for I2C protocol
-//#include <I2Cdev.h>                          // Include I2C protocol
+#include <I2Cdev.h>                          // Include I2C protocol
 #include <MPU6050.h>                         // Include Gyrometer
 
 //initialization for the RIGHT sensor
@@ -31,3 +37,20 @@ int mspeedL;
 //constant timeDelay and trial times
 const int timeDelay = 500;
 const int trials = 20;
+const int fullSpeed = 150;
+
+//define the Gyro code    //accredited from 
+#define DEGREE_METHOD_USING_MICROS
+
+MPU6050 gyroAccelTemp;                       // Declare a MPU6050 object instance
+
+//Define the properties of the MPU-6050 (IMU)
+float gyroDegreeNew;
+float gyroDegreeOld;
+
+#define GYRO_Z_OFFSET 16                     // Determined using IMU_Zero under File > Examples > MPU6050
+
+#ifdef DEGREE_METHOD_USING_MICROS
+  bool isFirstLoopComplete;                  // Declaring the isFirstLoopComplete boolean flag
+  float previousTime;                        // Declaring the value to hold the time
+#endif
