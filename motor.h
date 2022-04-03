@@ -1,11 +1,13 @@
 #include <analogWrite.h>
 
-const int ENA = 19;
-const int IN1 = 22;
-const int IN2 = 21;
-const int IN3 = 2;
-const int IN4 = 13;
-const int ENB = 14;
+//#define FREQ 40
+
+const int ENA = 13;
+const int IN1 = 14;
+const int IN2 = 0;
+const int IN3 = 26;
+const int IN4 = 25;
+const int ENB = 2;
 void motorSetup(){
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
@@ -49,8 +51,7 @@ void mleft(){
 /*------------------------------------------------------------------------------------------*/
 byte move(byte speed = 220, bool forward = true, float direction = 0){
   if (abs(direction) > 1) {
-    //direction must be between -1 & 1
-    return 1;
+    direction = (direction > 0) - (0 > direction);
   }
 
   int outsideMotor = direction > 0 ? ENB : ENA;
@@ -63,7 +64,7 @@ byte move(byte speed = 220, bool forward = true, float direction = 0){
 }
 
 void dMove(byte speed = 220, bool forward = true, int time_ms = 150, float direction = 0){
-  if(move(forward, direction, speed)) return;
+  if(move(speed, forward, direction)) return;
   delay(time_ms);
   mbrake();
 }
