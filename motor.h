@@ -1,6 +1,6 @@
 #include <analogWrite.h>
 
-//#define FREQ 40
+#define FREQ 50
 
 const int ENA = 13;
 const int IN1 = 14;
@@ -58,8 +58,8 @@ byte move(byte speed = 220, bool forward = true, float direction = 0){
   int insideMotor = (ENA + ENB) - outsideMotor;
 
   forward? mforward():mbackward();
-  analogWrite(outsideMotor, speed);
-  analogWrite(insideMotor, int(speed*(1-abs(direction))));
+  analogWrite(outsideMotor, speed, FREQ);
+  analogWrite(insideMotor, int(speed*(1-abs(direction))), FREQ);
   return 0;
 }
 
@@ -71,8 +71,8 @@ void dMove(byte speed = 220, bool forward = true, int time_ms = 150, float direc
 
 void dTurn(bool right, int time_ms= 100, byte speed = 220){
   right? mright():mleft();
-  analogWrite(ENA, speed);
-  analogWrite(ENB, speed);
+  analogWrite(ENA, speed, FREQ);
+  analogWrite(ENB, speed, FREQ);
   delay(time_ms);
   mbrake();
 }
