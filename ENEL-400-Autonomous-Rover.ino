@@ -8,7 +8,7 @@
 #define ECHO_PIN_LEFT    39
 #define TRIGGER_PIN_RIGHT   4  // Arduino pin tied to trigger pin on the ultrasonic sensor.
 #define ECHO_PIN_RIGHT    36  // Arduino pin tied to echo pin on the ultrasonic sensor.
-#define MAX_DISTANCE     100 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+#define MAX_DISTANCE     80 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 
 const char *ssid = "esp32";
 WiFiServer server(80);
@@ -65,11 +65,11 @@ void drive() {
   Serial.println();
   lastscan = millis();
 
-  int speed = distR>distL?distL:distR;
+  int speed = distR>distL?distL+40:distR+40;
   
-  if (distR < 50 || distL < 50){
-    int diff = (distR>60?60:distR) - (distL>60?60:distL);
-    move(70,true,(float)diff/50);
+  if (distR < 35 || distL < 35){
+    int diff = (distR>40?40:distR) - (distL>40?40:distL);
+    move(speed,true,(float)diff/40);
     Serial.printf("speed: %d, diff: %f, olddiff: %f\n", speed, (float)diff/40, (float)(diff/40));
   }
   else {
